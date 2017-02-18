@@ -13,7 +13,7 @@ class App extends React.Component {
       <div>
         <Nav />
         <div className="col-md-7">
-          <VideoPlayer video={this.state.current} />
+          <VideoPlayer app={this} video={this.state.current} />
         </div>
         <div className="col-md-5">
           <VideoList app={this} videos={this.state.videos} />
