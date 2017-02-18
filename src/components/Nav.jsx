@@ -1,7 +1,8 @@
-var Nav = ({onSearchChange}) => (
+var Nav = ({onSearchChange, toggleAutoplay, autoplay}) => (
   <nav className="navbar">
     <div className="col-md-6 col-md-offset-3">
       <Search onSearchChange={onSearchChange} />
+      <Autoplay toggleAutoplay={toggleAutoplay} autoplay={autoplay} />
     </div>
   </nav>
 );

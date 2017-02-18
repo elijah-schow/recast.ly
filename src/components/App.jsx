@@ -4,8 +4,13 @@ class App extends React.Component {
     super(props);
     this.state = {
       videos: [],
-      current: null
+      current: null,
+      autoplay: false
     };
+  }
+
+  toggleAutoplay(autoplay){
+    this.setState({'autoplay': autoplay});
   }
 
   onVideoChange(video) {
@@ -35,9 +40,16 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Nav onSearchChange={this.fetchVideos.bind(this)} />
+        <Nav
+          onSearchChange={this.fetchVideos.bind(this)}
+          toggleAutoplay={this.toggleAutoplay.bind(this)}
+          autoplay={this.state.autoplay}
+        />
         <div className="col-md-7">
-          <VideoPlayer video={this.state.current} />
+          <VideoPlayer
+            video={this.state.current}
+            autoplay={this.state.autoplay}
+          />
         </div>
         <div className="col-md-5">
           <VideoList onVideoChange={this.onVideoChange.bind(this)} videos={this.state.videos} />
