@@ -1,7 +1,7 @@
-var Nav = (props) => (
+var Nav = ({onSearchChange}) => (
   <nav className="navbar">
     <div className="col-md-6 col-md-offset-3">
-      <Search onSearchChange={props.onSearchChange} />
+      <Search onSearchChange={onSearchChange} />
     </div>
   </nav>
 );

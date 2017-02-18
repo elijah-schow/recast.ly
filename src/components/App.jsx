@@ -1,45 +1,11 @@
 class App extends React.Component {
 
   constructor(props) {
-    let empty = {
-      kind: '',
-      etag: '',
-      id: {
-        kind: '',
-        videoId: ''
-      },
-      snippet: {
-        publishedAt: '',
-        channelId: '',
-        title: '',
-        description: '',
-        thumbnails: {
-          default: {
-            url: '',
-            width: 120,
-            height: 90
-          },
-          medium: {
-            url: '',
-            width: 320,
-            height: 180
-          },
-          high: {
-            url: '',
-            width: 480,
-            height: 360
-          }
-        },
-        channelTitle: '',
-        liveBroadcastContent: ''
-      }
-    };
     super(props);
     this.state = {
-      current: empty,
-      videos: [empty]
+      current: null,
+      videos: []
     };
-    this.onSearchChange = this.onSearchChange.bind(this);
   }
 
   onSearchChange(target) {
@@ -64,15 +30,21 @@ class App extends React.Component {
     });
   }
 
+  onVideoChange(video) {
+    this.setState({
+      current: video
+    });
+  }
+
   render() {
     return (
       <div>
-        <Nav onSearchChange={this.onSearchChange} />
+        <Nav onSearchChange={this.onSearchChange.bind(this)} />
         <div className="col-md-7">
-          <VideoPlayer app={this} video={this.state.current} />
+          <VideoPlayer video={this.state.current} />
         </div>
         <div className="col-md-5">
-          <VideoList app={this} videos={this.state.videos} />
+          <VideoList onVideoChange={this.onVideoChange.bind(this)} videos={this.state.videos} />
         </div>
       </div>
     );

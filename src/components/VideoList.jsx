@@ -1,7 +1,7 @@
-var VideoList = (props) => (
+var VideoList = ({videos, onVideoChange}) => (
   <div className="video-list media">
-    {props.videos.map( video => (
-      <VideoListEntry app={props.app} key={video.id.videoId} video={video} />
+    {videos.map( video => (
+      <VideoListEntry onVideoChange={onVideoChange} key={video.id.videoId} video={video} />
     ))}   
   </div>
 );

@@ -40,9 +40,9 @@ describe ('VideoPlayer', function() {
     var superCuteCatVideoIFrameElement = findRenderedDOMComponentWithClass(superCuteCatVideo, 'embed-responsive-item');
     var hackReactorVideoIFrameElement = findRenderedDOMComponentWithClass(hackReactorVideo, 'embed-responsive-item');
 
-    expect(cuteCatVideoIFrameElement.src).to.equal('https://www.youtube.com/embed/000001');
-    expect(superCuteCatVideoIFrameElement.src).to.equal('https://www.youtube.com/embed/000002');
-    expect(hackReactorVideoIFrameElement.src).to.equal('https://www.youtube.com/embed/000003');
+    expect(cuteCatVideoIFrameElement.src).to.equal('https://www.youtube.com/embed/000001?autoplay=1');
+    expect(superCuteCatVideoIFrameElement.src).to.equal('https://www.youtube.com/embed/000002?autoplay=1');
+    expect(hackReactorVideoIFrameElement.src).to.equal('https://www.youtube.com/embed/000003?autoplay=1');
   });
 
   it('should dynamically render a video\'s title', function() {
