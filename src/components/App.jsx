@@ -1,16 +1,49 @@
 class App extends React.Component {
 
   constructor(props) {
+    let empty = {
+      kind: '',
+      etag: '',
+      id: {
+        kind: '',
+        videoId: ''
+      },
+      snippet: {
+        publishedAt: '',
+        channelId: '',
+        title: '',
+        description: '',
+        thumbnails: {
+          default: {
+            url: '',
+            width: 120,
+            height: 90
+          },
+          medium: {
+            url: '',
+            width: 320,
+            height: 180
+          },
+          high: {
+            url: '',
+            width: 480,
+            height: 360
+          }
+        },
+        channelTitle: '',
+        liveBroadcastContent: ''
+      }
+    };
     super(props);
     this.state = {
-      current: {},
-      videos: []
+      current: empty,
+      videos: [empty]
     };
     this.onSearchChange = this.onSearchChange.bind(this);
   }
 
   onSearchChange(target) {
-    searchYouTube({
+    this.props.searchYouTube({
       query: target.value,
       max: 5,
       key: YOUTUBE_API_KEY
@@ -21,7 +54,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    searchYouTube({
+    this.props.searchYouTube({
       query: 'react',
       max: 5,
       key: YOUTUBE_API_KEY
