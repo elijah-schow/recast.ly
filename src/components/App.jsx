@@ -6,12 +6,24 @@ class App extends React.Component {
       current: exampleVideoData[0],
       videos: exampleVideoData
     };
+    this.onSearchChange = this.onSearchChange.bind(this);
+  }
+
+  onSearchChange(target) {
+    searchYouTube({
+      query: target.value,
+      max: 5,
+      key: YOUTUBE_API_KEY
+    },
+    data => {
+      this.setState({videos: data});
+    });
   }
 
   render() {
     return (
       <div>
-        <Nav />
+        <Nav onSearchChange={this.onSearchChange} />
         <div className="col-md-7">
           <VideoPlayer app={this} video={this.state.current} />
         </div>
