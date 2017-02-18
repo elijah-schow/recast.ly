@@ -3,8 +3,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: exampleVideoData[0],
-      videos: exampleVideoData
+      current: {},
+      videos: []
     };
     this.onSearchChange = this.onSearchChange.bind(this);
   }
@@ -17,6 +17,17 @@ class App extends React.Component {
     },
     data => {
       this.setState({videos: data});
+    });
+  }
+
+  componentDidMount() {
+    searchYouTube({
+      query: 'react',
+      max: 5,
+      key: YOUTUBE_API_KEY
+    },
+    data => {
+      this.setState({current: data[0], videos: data});
     });
   }
 
