@@ -1,7 +1,7 @@
 var Search = (props) => {
 
   var handleChange = e => {
-    props.onSearchChange(e.target);
+    props.onSearchChange(e.target.value);
   };
 
   return (
@@ -10,7 +10,7 @@ var Search = (props) => {
       <button className="btn hidden-sm-down">
         <span className="glyphicon glyphicon-search"></span>
       </button>
-    </div> 
+    </div>
   );
 };
 

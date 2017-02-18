@@ -3,31 +3,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: null,
-      videos: []
+      videos: [],
+      current: null
     };
-  }
-
-  onSearchChange(target) {
-    this.props.searchYouTube({
-      query: target.value,
-      max: 5,
-      key: YOUTUBE_API_KEY
-    },
-    data => {
-      this.setState({videos: data});
-    });
-  }
-
-  componentDidMount() {
-    this.props.searchYouTube({
-      query: 'react',
-      max: 5,
-      key: YOUTUBE_API_KEY
-    },
-    data => {
-      this.setState({current: data[0], videos: data});
-    });
   }
 
   onVideoChange(video) {
@@ -36,10 +14,28 @@ class App extends React.Component {
     });
   }
 
+  fetchVideos(query){
+    this.props.searchYouTube({
+      query: query,
+      max: 5,
+      key: YOUTUBE_API_KEY
+    },
+    videos => {
+      this.setState({
+        videos: videos,
+        current: videos[0]
+      });
+    });
+  }
+
+  componentDidMount() {
+    this.fetchVideos('react javascript');
+  }
+
   render() {
     return (
       <div>
-        <Nav onSearchChange={this.onSearchChange.bind(this)} />
+        <Nav onSearchChange={this.fetchVideos.bind(this)} />
         <div className="col-md-7">
           <VideoPlayer video={this.state.current} />
         </div>
